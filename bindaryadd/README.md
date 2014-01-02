@@ -1,1 +1,1 @@
-http://www.careercup.com/question\?id\=4892713614835712
+http://www.careercup.com/question?id=4892713614835712
