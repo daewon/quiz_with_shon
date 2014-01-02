@@ -1,6 +1,8 @@
+# Given a number N, write a program that returns all possible combinations of numbers that add up to N, as lists. (Exclude the N+0=N) 
+# For example, if N=4 return {{1,1,1,1},{1,1,2},{2,2},{1,3}}
+
 # ex) input == 4
 # [[1, 1, 1, 1], [1, 1, 2], [1, 3], [2, 2]]
-
 def comb input
   acc = []
   subsets = -> prev = [] {
