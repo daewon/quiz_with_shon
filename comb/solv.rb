@@ -1,4 +1,4 @@
-# Given a number N, write a program that returns all possible combinations of numbers that add up to N, as lists. (Exclude the N+0=N) 
+# Given a number N, write a program that returns all possible combinations of numbers that add up to N, as lists. (Exclude the N+0=N)
 # For example, if N=4 return {{1,1,1,1},{1,1,2},{2,2},{1,3}}
 
 # ex) input == 4
@@ -12,6 +12,7 @@ def comb input
 
       if sum == input
         acc << set # print
+        return
       elsif sum < input
         subsets.call set
       else
@@ -20,8 +21,7 @@ def comb input
     end
     acc
   }
-
   subsets.call
 end
 
-p comb 4
+p comb 5
