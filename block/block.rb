@@ -56,3 +56,4 @@ run = -> pr, pc do
 end
 
 run.call 0, 0
+p cnt
