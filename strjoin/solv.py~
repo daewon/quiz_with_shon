@@ -1,0 +1,5 @@
+from queue import *
+This imports all the classes from the queue module already. Change that line to
+
+q = Queue(maxsize=0)
+
