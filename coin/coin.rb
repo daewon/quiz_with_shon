@@ -8,15 +8,15 @@ coin = -> n, divs, i, memo do
   memo[n][i] = coin.call(n, divs, i-1, memo) + coin.call(n - divs[i], divs, i, memo)
 end
 
+# 110
+# [10, 50, 100, 500]
 def coin2(n, coins)
-  memo = (0..n).map {|i| 0}
+  memo = (0..n).map { |i| 0 }
   memo[0] = 1
-  for coin in coins
-    (0..n).map {|i|
-      if (i + coin <= n)
-        memo[i+coin] += memo[i]
-      end
-    }
+  coins.each do |coin|
+    (0..n).each do |i|
+      memo[i + coin] += memo[i] if (i + coin <= n)
+    end
   end
   memo[n]
 end

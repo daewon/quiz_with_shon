@@ -7,10 +7,12 @@ def solv(ls):
   for n in xrange(len(hq)-1):
     a, b = heapq.heappop(hq), heapq.heappop(hq)
     sum = a + b
+    print a, b
     heapq.heappush(hq, sum)
     acc += sum
 
   return acc
 
-for input in inputs:
+for input in reversed(inputs):
   print(input, solv(input))
+  break
