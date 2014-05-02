@@ -1,0 +1,21 @@
+6
+3
+hello-$
+there-$
+world$
+4
+a-$
+-$
+-$
+b$
+3
+i am ver-$
+y sleepy arent-$
+ you$ 
+1
+jong-man rules$
+1
+-
+2
+-
+-

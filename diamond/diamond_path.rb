@@ -1,3 +1,4 @@
+# coding: utf-8
 # dp
 def solv width, depth, matrix, memo = []
   sv = -> w, d do
@@ -9,34 +10,36 @@ def solv width, depth, matrix, memo = []
     add = d > width ? 1 : -1
     memo[d][w] = [sv.call(w, d-1), sv.call(w + add, d-1)].max + (matrix[d][w] || 0)
   end
+
   sv.call 0, depth
 end
 
 # greedy
 def solv2 width, depth, matrix
-  a, b = matrix[0..width].reverse, matrix[(width+1)..depth]
   sv = -> m do
     m.inject do |acc, row|
-      row.each_with_index.map do |n, idx|
-        [n + acc[idx], n + acc[idx+1]].max
-      end
+      add = row.length < acc.length  ? 1 : -1
+      row.each_with_index.map { |n, idx|
+        prev_indirect = idx + add > -1 ? acc[idx + add] : 0 # 루비에서 array에 -1 인덱슬 접근시 뒤에 원소가 나온다
+        n + [prev_indirect || 0, acc[idx] || 0].max
+      }
     end
   end
 
-  sv.call(a).first + sv.call(b).first
+  sv.call(matrix).first
 end
 
 # process input
-n = gets.to_i
-for _ in 0...n
+for _ in 0...gets.to_i
   width = gets.to_i
   depth = width * 2 - 1
   matrix = []
-  for d in 0...depth
+
+  (0...depth).each do |d|
     line = gets.split.map &:to_i
     matrix[d] = line
   end
 
-  puts solv(width-1, depth-1, matrix)
+  #puts solv(width-1, depth-1, matrix)
   puts solv2(width-1, depth-1, matrix)
 end
