@@ -1,7 +1,7 @@
 var solv = function(n, k) {
   var nodes = [];
-  for (var i=1; i<=n; i++) {
-    nodes.push({value: i});
+  for (var i=0; i<n; i++) {
+    nodes.push({value: i+1});
   }
 
   for (var i=0; i < nodes.length; i++) {
