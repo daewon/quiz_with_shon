@@ -15,7 +15,7 @@ var solv = function(n, k) {
   var i = 1;
   var node = nodes[0];
   while (n > 2) {
-    if (i % k == 1) {
+    if (i % k == 1 || k == 1) {
       node.next.prev = node.prev;
       node.prev.next = node.next;
       n--;
@@ -24,7 +24,7 @@ var solv = function(n, k) {
     i++;
   }
 
-  console.log(node.value, node.next.value);
+  return [node.value, node.next.value].sort(function(a, b) { return a - b; });
 };
 
 var n = 0;
@@ -32,7 +32,7 @@ require('readline').createInterface({input: process.stdin, output: process.stdou
   .on('line', function (cmd) {
     if (n > 0) {
       var arr = cmd.split(' ').map(function(n) { return parseInt(n); });
-      solv(arr[0], arr[1]);
+      console.log(solv(arr[0], arr[1]).join(' '));
     }
     n++;
   });

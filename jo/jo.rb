@@ -1,8 +1,7 @@
 class Node
-  attr_accessor :value, :next_node,:prev_node
-  def initialize value, next_node=nil
+  attr_accessor :value, :next_node, :prev_node
+  def initialize value
     @value = value
-    @next_node, @prev_node = next_node, prev_node
   end
 end
 
@@ -15,23 +14,20 @@ def solv n, k
 
   i = 1
   node = nodes.first
-  while n > 2 
-    if i % k == 1 
-      pr = node.prev_node
-      ne = node.next_node
-      node.next_node.prev_node = pr
-      node.prev_node.next_node = ne
+  while n > 2
+    if i % k == 1 or k == 1
+      node.next_node.prev_node = node.prev_node
+      node.prev_node.next_node = node.next_node
       n -= 1
     end
     node = node.next_node
     i += 1
   end
 
-  "#{node.value} #{node.next_node.value}"
+  "#{[node.value, node.next_node.value].sort.join(' ')}"
 end
 
 gets.to_i.times do
   n, k = gets.split(" ").map &:to_i
   puts solv n, k
 end
-
