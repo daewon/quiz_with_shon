@@ -24,10 +24,10 @@ def solv n, k
     i += 1
   end
 
-  "#{[node.value, node.next_node.value].sort.join(' ')}"
+  [node.value, node.next_node.value].sort
 end
 
 gets.to_i.times do
   n, k = gets.split(" ").map &:to_i
-  puts solv n, k
+  puts solv(n, k).join(' ')
 end
