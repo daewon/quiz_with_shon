@@ -1,27 +1,28 @@
 var util = require('util');
+
 var cache = [];
 for (var i=0; i<100; i++) { cache[i] = []; }
 
-var solv = function(matrix, _start_point, _day, dest_point) {
+var solv = function(matrix, _startPoint, _day, destPoint) {
   cache.forEach(function(arr) {
-    for(var i=0; i < arr.length; i++) { arr[i] = -1 }
+    for (var i=0; i < arr.length; i++) { arr[i] = -1; }
   });
 
-  var search = function(start_point, day) {
-    if (cache[start_point][day] > -1) { return cache[start_point][day]; }
-    if (day == 0) { return (dest_point == start_point) ? 1 : 0 };
+  var search = function(startPoint, day) {
+    if (cache[startPoint][day] > -1) { return cache[startPoint][day]; }
+    if (day == 0) { return (destPoint == startPoint) ? 1 : 0; };
 
     var sum = 0;
-    var arr = matrix[start_point];
+    var arr = matrix[startPoint];
     for (var i=0; i < arr.length; i++) {
       var s = search(arr[i], day-1);
       sum += s / matrix[arr[i]].length;
     }
 
-    return cache[start_point][day] = sum;
+    return cache[startPoint][day] = sum;
   };
 
-  return search(_start_point, _day);
+  return search(_startPoint, _day);
 };
 
 // parse -_-;;;;
