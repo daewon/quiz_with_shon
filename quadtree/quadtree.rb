@@ -1,5 +1,6 @@
 class Tree
   attr_accessor :ch, :lt, :rt, :lb, :rb, :parent
+
   def initialize ch, parent=nil
     @state, @ch, @parent = 0, ch, parent
   end
@@ -37,6 +38,7 @@ end
 def solv line
   parse = -> tree, input do
     return tree if input.empty?
+
     if tree.is_full?
       parse.(tree.parent, input)
     else
