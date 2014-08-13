@@ -30,13 +30,7 @@ class Tree
   end
 
   def to_s
-    @ch + [@lt, @rt, @lb, @rb].map do |n|
-      if n.is_a? Tree
-        n.to_s
-      else
-        n
-      end
-    end.join('')
+    @ch + [@lt, @rt, @lb, @rb].map(&:to_s).join('')
   end
 end
 
@@ -46,9 +40,9 @@ def solv line
       return tree if tree.parent.nil?
       parse.(tree.parent, input)
     else
-      ch = input.delete_at(0)
+      ch = input.delete_at 0
       if ch == 'x'
-        new_tree = Tree.new(ch, tree)
+        new_tree = Tree.new ch, tree
         tree.add new_tree
         parse.(new_tree, input)
       else
@@ -59,7 +53,7 @@ def solv line
   end
 
   head, *tail = line
-  tree = Tree.new(head)
+  tree = Tree.new head
   return parse.(tree, tail).reverse!
 end
 
