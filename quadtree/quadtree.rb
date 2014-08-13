@@ -36,8 +36,8 @@ end
 
 def solv line
   parse = -> tree, input do
+    return tree if input.empty?
     if tree.is_full?
-      return tree if tree.parent.nil?
       parse.(tree.parent, input)
     else
       ch = input.delete_at 0
@@ -58,5 +58,5 @@ def solv line
 end
 
 gets.to_i.times do
-  puts solv gets.split('')
+  puts solv gets.strip.split('')
 end
