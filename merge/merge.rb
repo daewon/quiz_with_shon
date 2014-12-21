@@ -16,7 +16,7 @@ def merge_sort arr
   return arr if arr.one?
 
   n = arr.length / 2
-  a, b = [arr[0...n], arr[n..-1]]
+  a, b = arr[0...n], arr[n..-1]
   merge merge_sort(a), merge_sort(b)
 end
 
