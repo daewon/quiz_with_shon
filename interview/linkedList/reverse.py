@@ -7,8 +7,9 @@ class Node:
     def __str__(self):
         return "%s" % self.value
 
-# return head of reversed list.
 
+
+# return head of reversed list.
 def reverse(head):
     if head == None or head.next == None: 
         return (head, head)
@@ -29,6 +30,14 @@ def append(head, node):
         head = head.next
     # now head is last node on list
     head.next = node
+
+# sortedInsert.
+def sortedInsert(head, node):
+    ptr = head
+    while ptr.next != None and ptr.next.value < node.value: 
+        ptr = ptr.next
+    node.next = ptr.next
+    ptr.next = node
     
 def printList(head):
     while head != None: 
@@ -41,10 +50,12 @@ append(head, Node(20, None))
 head = prepend(head, Node(1, None))
 
 printList(head)
-
-(head, tmp) = reverse(head)
-
+newNode = Node(15, None)
+sortedInsert(head, newNode)
 printList(head)
+#(head, tmp) = reverse(head)
+
+#printList(head)
 
 
 
