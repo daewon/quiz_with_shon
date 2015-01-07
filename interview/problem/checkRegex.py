@@ -14,7 +14,6 @@ Examples:
 """
 
 def checkRegex(pattern, text):
-    print pattern, text
     if len(pattern) == 0 and len(text) == 0: return True
     elif len(pattern) == 0: return False
     if len(pattern) == 1: 
@@ -31,15 +30,26 @@ def checkRegex(pattern, text):
             return checkRegex(pattern[1:], text[1:])
     else:
         if p1 == '.':
-            if p2 == '*': return True
+            if p2 == '*': 
+                if len(pattern) == 2: return True
+                else: 
+                    p3 = pattern[2]
+                    j = 0
+                    while text[j] != p3: j += 1
+                    return checkRegex(pattern[2:], text[j:])
             else: return checkRegex(pattern[1:], text[1:])
         else:
             if p2 == '*': return checkRegex(pattern[2:], text)
             else: return False
 
 
-print checkRegex("a*b", "b")
-print checkRegex("a*b", "ab")
-print checkRegex("a*b", "aabb")
+def run(pattern, text):
+    print pattern, text, checkRegex(pattern, text)
+    
 
+run("a*b", "b")
+run("a*b", "ab")
+run("a*b", "aabb")
+run(".*", "aabb")
+run(".*bb", "bb")
                 
